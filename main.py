@@ -1,94 +1,37 @@
-import enum
-from random import random
-from time import thread_time, time
-from typing_extensions import Self
-rand_num = random.randint(0,10)
+import os
+import random  
+import time
+import utility
+from user import User
+from game import Game
 
 
-class User():
-    usr_name: str
-    pts : int
 
-    def __init__(self,usr_name):
-       self.usr_name =usr_name
-       self.pts = 0 
+def main():
 
-    def award(self,n:int):
-        self.pts = self.pts+n
-        
-    def penality(self,n:int):
-        self.pts = self.pts-n
-    
-    def chk_pts_against_50(self):
-        if self.pts<50:
-            return f"The user has only {self.pts}"
+    utility.display_clear_normal('Welcome, \n')
+    name = input('Enter Your Name To Play The Game \n')
+
+    usr = User(name)
+    game = Game(usr)
+
+    # usr.play_game(game)
+    # game.start()
+
+    while True:
+        if(usr.pts is not None and usr.pts < 50):
+            rand_num = random.randint(0,10)
+            num = input('Enter Your guess \n')
+            game.check_usr_input_num(num,rand_num)
+
         else:
-            return "user already reached 50pts" 
-        # elif(self.pts>50):
-        #     return 'User already has more '
-        # else:
-        #     return "Congratulation you have Scored the highest point. You are Legend"
-    def play_game(self):
-        game= Game(self)
-        game.start()
+            utility.display_clear_prog_str('Congrattulations')
+            utility.display_clear_normal('your point have reache 50')
+            print('Consiider updating Level?')
+            break
+
+    # print(str(5-10))
 
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-
-
-# abebe = User('ab')
-
-
-class Game():
-    class Game_status(enum.Enum):
-        LOSE=0
-        WIN =1
-        Default = None
-        
-    player: User
-    GAME_COST=10
-    status: int
- 
-      
-
-    def __init__(self,User) -> None:
-        self.player = User
-        status = self.Game_status.Default
-    
-    
-    
-    
-    # usr_input_num=int(input('Guess a number between 0 and 10'))
-
-    # def 
-
-
-    def start():
-        
-
-    
-    def check_usr_input_num(self,usr_num:int,comp_gen:int):
-
-        if(usr_num == comp_gen):
-            print("Great, you've enterd the right number you are awrarded 10pts")
-            self.status= 1
-        elif (usr_num is None):
-            print("please enter a valid number")
-        else:
-            print("Wrong, Try A gain, -10p")
-            self.status = 0
-
-    def apply_game_cost(self,):
-        if(self.status==1):
-            self.award(Game.GAME_COST)
-        else:
-            self.penality(Game.GAME_COST)
-
-
-
-
-
-
-
-
-# "Hello Welcome to the game"
+if __name__=='__main__':
+    main()
