@@ -7,10 +7,10 @@ class User():
        self.usr_name =usr_name
        self.pts = 0 
 
-    def award(self,n:int):
+    def award(self,n:int)->None:
         self.pts = self.pts+n
         
-    def penality(self,n:int):
+    def penality(self,n:int)->None:
         self.pts = self.pts-n
     
     def chk_pts_against_50(self):
