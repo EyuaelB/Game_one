@@ -1,34 +1,36 @@
 import os
-import random  
+import random
 import time
 import utility
 from user import User
 from game import Game
 
+
 def main():
 
-    utility.display_clear_normal('Welcome, \n')
-    name = input('Enter Your Name To Play The Game... \n')
+    utility.display_clear_normal("Welcome, \n")
+    name = input("Enter Your Name To Play The Game... \n")
 
     player = User(name)
     game = Game(player)
 
-    print('\n')
+    print("\n")
     time.sleep(2)
-    utility.display_clear_prog_str('Hello')
-    utility.display_clear('I will iterate and randomly select a number from Zero to Ten including Zero and Ten you Have to Guess')
+    utility.display_clear_prog_str("Hello")
+    # Game.start()
+    utility.display_clear(
+        "I will iterate and randomly select a number from Zero and One, and you Have to Guess"
+    )
 
     while True:
-        rand_num = random.randint(0,10)
-        num = int(input('Enter Your guess \n'))
-        game.game_prompt(player,num,rand_num)
+        rand_num = random.randint(0, 2)
+        num = int(input("Enter Your guess \n"))
+        game.game_prompt(player, num, rand_num)
 
-        if(player.pts==50):
-            print('Congratulations you have reached 50pts')
+        if player.pts == 50:
+            print("Congratulations you have reached 50pts")
             break
 
- 
 
-
-if __name__=='__main__':
+if __name__ == "__main__":
     main()

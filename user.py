@@ -3,17 +3,20 @@ class User():
     usr_name: str
     pts : int
 
-    def __init__(self,usr_name):
+    def __init__(self,usr_name)->None:
        self.usr_name =usr_name
        self.pts = 0 
-
+       
+       
     def award(self,n:int)->None:
         self.pts = self.pts+n
         
+        
     def penality(self,n:int)->None:
         self.pts = self.pts-n
-    
-    def chk_pts_against_50(self):
+        
+        
+    def chk_pts_against_50(self)->str:
         if self.pts<50:
             return f"The user has only {self.pts}"
         else:
